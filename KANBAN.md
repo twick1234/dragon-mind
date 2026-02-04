@@ -1,41 +1,44 @@
 # 🐉 Dragon Mind - Kanban Board
 
-**Last Updated:** 2026-02-04 17:03 SGT by CustomerChu
+**Last Updated:** 2026-02-04 21:48 SGT by CustomerChu
 
 ---
 
 ## 📋 BACKLOG
-- [ ] Deploy to Vercel
-- [ ] Add vector search to knowledge base
+- [ ] Vector search integration
 - [ ] Integration tests
+- [ ] Production deployment
 
 ---
 
 ## 🔄 IN PROGRESS
 
-### 🐒 ChuCoder (Engineering)
-- [ ] dragon-mind.js - Core engine
-- [ ] cli.js - CLI tool
-- [ ] demo/index.html - Web demo
-- [ ] FLOWS.md - User flows
+### 🔥 NEW SPRINT: Knowledge Graph System
+*Requested by J - Shared memory for all agents*
 
 ### 🔍 ChuScout (Research)
-- [ ] COMPETITIVE-ANALYSIS.md
-- [ ] MULTI-AGENT-PATTERNS.md
-- [ ] TECH-RECOMMENDATIONS.md
-- [ ] Seed knowledge base (10+ entries)
+- [ ] **KNOWLEDGE-GRAPH-COMPARISON.md** ⬅️ START HERE
+  - Neo4j vs Postgres vs Pinecone vs SQLite vs Redis
+  - Feature matrix, performance, cost
+  - Recommendation
 
-### 👹 ChuOps (DevOps)
-- [ ] health-check.sh
-- [ ] dashboard.html
-- [ ] RUNBOOK.md
-- [ ] Git init + first commit
+### 🐒 ChuCoder (Engineering)
+- [ ] knowledge-store.js - Core library
+- [ ] knowledge-graph.html - Visualization demo
+- [ ] Agent state sync prototype
+- [ ] *Waiting on Scout's research*
 
 ### 🧠 ChuMemory (Documentation)
-- [x] PRD.md ✅
-- [x] BRD.md ✅
-- [x] ARCHITECTURE.md ✅
-- [ ] Support team with doc updates
+- [ ] ADR-001-KNOWLEDGE-GRAPH.md
+- [ ] KNOWLEDGE-GRAPH-SCHEMA.md
+- [ ] Update ARCHITECTURE.md
+- [ ] *Waiting on Scout + Coder*
+
+### 👹 ChuOps (Infrastructure)
+- [ ] Database setup (SQLite/Postgres/Neo4j)
+- [ ] backup-knowledge.sh
+- [ ] Health monitoring integration
+- [ ] Docker compose (optional)
 
 ---
 
@@ -46,11 +49,22 @@
 - [x] ARCHITECTURE.md (ChuMemory)
 - [x] README.md (CustomerChu)
 - [x] STATUS.md (CustomerChu)
+- [x] Vercel deployment - 37 pages live!
+- [x] File-based coordination (v1)
 
 ---
 
 ## 🔥 BLOCKED
 *None currently*
+
+---
+
+## 📊 Sprint Goal
+Build a shared knowledge graph so all agents have:
+- Real-time awareness of each other's state
+- Semantic search across memories
+- Task dependency tracking
+- Shared tech standards library
 
 ---
 
