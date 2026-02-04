@@ -1,74 +1,84 @@
 # 🐉 Dragon Mind - Kanban Board
 
-**Last Updated:** 2026-02-04 21:48 SGT by CustomerChu
+**Last Updated:** 2026-02-04 21:53 SGT by CustomerChu
 
 ---
 
-## 📋 BACKLOG
-- [ ] Vector search integration
-- [ ] Integration tests
-- [ ] Production deployment
+## 📦 Package: @chu-collective/knowledge-graph
+*Portable, reusable, npm-installable*
 
 ---
 
-## 🔄 IN PROGRESS
+## 🔄 IN PROGRESS - Incremental Steps
 
-### 🔥 NEW SPRINT: Knowledge Graph System
-*Requested by J - Shared memory for all agents*
+### Step 1: Minimal Core ⬅️ START HERE
+**Owner:** 🐒 ChuCoder
+- [ ] `packages/knowledge-graph/src/store.js`
+- [ ] SQLite + better-sqlite3
+- [ ] Agents, Tasks, Memories, Standards CRUD
+- [ ] **Measure:** Can agents share state?
 
-### 🔍 ChuScout (Research)
-- [ ] **KNOWLEDGE-GRAPH-COMPARISON.md** ⬅️ START HERE
-  - Neo4j vs Postgres vs Pinecone vs SQLite vs Redis
-  - Feature matrix, performance, cost
-  - Recommendation
+### Step 2: CLI Tool
+**Owner:** 🐒 ChuCoder
+- [ ] `packages/knowledge-graph/bin/kg-cli.js`
+- [ ] `kg agents list`, `kg tasks add`, etc.
+- [ ] **Measure:** Can interact from command line?
 
-### 🐒 ChuCoder (Engineering)
-- [ ] knowledge-store.js - Core library
-- [ ] **mcp-server.js** - MCP server for agent integration 🆕
-- [ ] **knowledge-explorer.html** - Human dashboard to browse/search 🆕
-- [ ] Agent state sync prototype
-- [ ] *Waiting on Scout's research*
+### Step 3: Full-Text Search
+**Owner:** 🐒 ChuCoder
+- [ ] `packages/knowledge-graph/src/search.js`
+- [ ] SQLite FTS5
+- [ ] **Measure:** Find memories by keyword <100ms?
 
-### 🧠 ChuMemory (Documentation)
+### Step 4: MCP Server
+**Owner:** 🐒 ChuCoder
+- [ ] `packages/knowledge-graph/src/mcp-server.js`
+- [ ] Tools: kg_agent_status, kg_memory_search, etc.
+- [ ] **Measure:** Can Claude connect via MCP?
+
+### Step 5: Human Dashboard
+**Owner:** 🐒 ChuCoder
+- [ ] `packages/knowledge-graph/demo/explorer.html`
+- [ ] Browse agents, tasks, memories
+- [ ] Search UI
+- [ ] **Measure:** Humans can see agent state?
+
+---
+
+## 🔍 Research (Parallel)
+
+### 🔍 ChuScout
+- [ ] KNOWLEDGE-GRAPH-COMPARISON.md
+- [ ] Neo4j vs Postgres vs SQLite analysis
+- [ ] Recommendation for future scaling
+
+### 🧠 ChuMemory
 - [ ] ADR-001-KNOWLEDGE-GRAPH.md
-- [ ] KNOWLEDGE-GRAPH-SCHEMA.md
-- [ ] Update ARCHITECTURE.md
-- [ ] *Waiting on Scout + Coder*
+- [ ] Document each step's learnings
 
-### 👹 ChuOps (Infrastructure)
-- [ ] Database setup (SQLite/Postgres/Neo4j)
-- [ ] backup-knowledge.sh
+### 👹 ChuOps
+- [ ] Backup scripts
 - [ ] Health monitoring integration
-- [ ] Docker compose (optional)
 
 ---
 
 ## ✅ DONE
-- [x] Project initialized (CustomerChu)
-- [x] PRD.md (ChuMemory)
-- [x] BRD.md (ChuMemory)
-- [x] ARCHITECTURE.md (ChuMemory)
-- [x] README.md (CustomerChu)
-- [x] STATUS.md (CustomerChu)
-- [x] Vercel deployment - 37 pages live!
-- [x] File-based coordination (v1)
-
----
-
-## 🔥 BLOCKED
-*None currently*
+- [x] Project setup (CustomerChu)
+- [x] PRD, BRD, ARCHITECTURE (ChuMemory)
+- [x] Package structure scaffolded
+- [x] Incremental plan defined
+- [x] Vercel deployment (37 pages)
 
 ---
 
 ## 📊 Sprint Goal
-Build a shared knowledge graph so all agents have:
-- Real-time awareness of each other's state
-- Semantic search across memories
-- Task dependency tracking
-- Shared tech standards library
-- **MCP integration** for standardized agent access 🆕
-- **Human dashboard** to view/search knowledge graph 🆕
+Build `@chu-collective/knowledge-graph`:
+- ✅ Portable npm package
+- ✅ Works anywhere (no server required)
+- ✅ Incremental: step, measure, iterate
+- ✅ MCP integration for agents
+- ✅ Human dashboard for visibility
 
 ---
 
-*Updated by the Chu Collective* 🐉
+*The Chu Collective builds incrementally* 🐉

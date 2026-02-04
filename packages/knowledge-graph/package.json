@@ -1,0 +1,20 @@
+{
+  "name": "@chu-collective/knowledge-graph",
+  "version": "0.1.0",
+  "description": "Shared knowledge graph for multi-agent coordination",
+  "main": "src/index.js",
+  "bin": {
+    "kg": "./bin/kg-cli.js"
+  },
+  "scripts": {
+    "test": "node test/store.test.js",
+    "cli": "node bin/kg-cli.js",
+    "mcp": "node src/mcp-server.js"
+  },
+  "keywords": ["knowledge-graph", "multi-agent", "mcp", "clawdbot"],
+  "author": "Chu Collective",
+  "license": "MIT",
+  "dependencies": {
+    "better-sqlite3": "^9.0.0"
+  }
+}
