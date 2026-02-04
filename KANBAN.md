@@ -24,7 +24,8 @@
 
 ### 🐒 ChuCoder (Engineering)
 - [ ] knowledge-store.js - Core library
-- [ ] knowledge-graph.html - Visualization demo
+- [ ] **mcp-server.js** - MCP server for agent integration 🆕
+- [ ] **knowledge-explorer.html** - Human dashboard to browse/search 🆕
 - [ ] Agent state sync prototype
 - [ ] *Waiting on Scout's research*
 
@@ -65,6 +66,8 @@ Build a shared knowledge graph so all agents have:
 - Semantic search across memories
 - Task dependency tracking
 - Shared tech standards library
+- **MCP integration** for standardized agent access 🆕
+- **Human dashboard** to view/search knowledge graph 🆕
 
 ---
 
