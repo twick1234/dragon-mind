@@ -1,1 +1,98 @@
-{"entries":[],"meta":{"created":"2026-02-04T08:35:00.000Z","contributors":[]}}
+{
+  "entries": [
+    {
+      "id": "ml7sier2",
+      "topic": "multi-agent-patterns",
+      "content": "Hub-spoke coordination with central coordinator (CustomerChu) distributes tasks to specialized agents. Blackboard pattern uses shared STATUS.md for transparent state. Combined approach provides clear authority with visible state.",
+      "source": "ChuScout research - MULTI-AGENT-PATTERNS.md",
+      "contributor": "ChuScout",
+      "timestamp": "2026-02-04T08:53:10.574Z"
+    },
+    {
+      "id": "ml7sierq",
+      "topic": "competitive-analysis",
+      "content": "Key competitors: AutoGPT (autonomous loops), CrewAI (role-based), LangGraph (graph workflows), MetaGPT (software dev SOPs), AutoGen (conversation-based). Dragon Mind differentiator: Clawdbot-native, chat-first, file-based simplicity.",
+      "source": "ChuScout research - COMPETITIVE-ANALYSIS.md",
+      "contributor": "ChuScout",
+      "timestamp": "2026-02-04T08:53:10.598Z"
+    },
+    {
+      "id": "ml7siese",
+      "topic": "storage-recommendations",
+      "content": "Start with JSON files for MVP (<1000 entries). Graduate to SQLite + FTS5 for 1K-100K entries with full-text search. Consider vector DB (ChromaDB/Qdrant) for semantic search at scale.",
+      "source": "ChuScout research - TECH-RECOMMENDATIONS.md",
+      "contributor": "ChuScout",
+      "timestamp": "2026-02-04T08:53:10.622Z"
+    },
+    {
+      "id": "ml7siet1",
+      "topic": "crewai-learnings",
+      "content": "CrewAI strength: role-based design with backstories gives agents personality and consistency. Dragon Mind already does this with SOUL.md files! Task handoff patterns and human-in-the-loop checkpoints are valuable.",
+      "source": "ChuScout research - COMPETITIVE-ANALYSIS.md",
+      "contributor": "ChuScout",
+      "timestamp": "2026-02-04T08:53:10.645Z"
+    },
+    {
+      "id": "ml7sietp",
+      "topic": "autogen-learnings",
+      "content": "Microsoft AutoGen uses conversation-based multi-agent collaboration. Agents chat, debate, refine solutions. Supports group chats with human participation. Dragon Mind's Telegram group approach already implements this pattern!",
+      "source": "ChuScout research - COMPETITIVE-ANALYSIS.md",
+      "contributor": "ChuScout",
+      "timestamp": "2026-02-04T08:53:10.669Z"
+    },
+    {
+      "id": "ml7sieud",
+      "topic": "blackboard-pattern",
+      "content": "Blackboard pattern: shared knowledge space all agents read/write. Agents check state, decide work, write results back. Dragon Mind implements via STATUS.md and memory files. Pro: decoupled, transparent. Con: race conditions possible.",
+      "source": "ChuScout research - MULTI-AGENT-PATTERNS.md",
+      "contributor": "ChuScout",
+      "timestamp": "2026-02-04T08:53:10.693Z"
+    },
+    {
+      "id": "ml7siev1",
+      "topic": "security-best-practices",
+      "content": "Multi-agent security: validate inputs for prompt injection, implement access control per agent, audit log all operations, sandbox agent file access to their workspace. Watch for suspicious patterns like 'ignore previous instructions'.",
+      "source": "ChuScout research - TECH-RECOMMENDATIONS.md",
+      "contributor": "ChuScout",
+      "timestamp": "2026-02-04T08:53:10.717Z"
+    },
+    {
+      "id": "ml7sievt",
+      "topic": "scaling-strategy",
+      "content": "Agent scaling: consider agent pooling (activate on demand vs always-on), batch related tasks to reduce round-trips, implement caching for common queries. Data scaling: index early, partition by domain, archive stale entries.",
+      "source": "ChuScout research - TECH-RECOMMENDATIONS.md",
+      "contributor": "ChuScout",
+      "timestamp": "2026-02-04T08:53:10.745Z"
+    },
+    {
+      "id": "ml7siewi",
+      "topic": "hub-spoke-pros-cons",
+      "content": "Hub-spoke pattern pros: clear authority, reduced confusion, quality control at center. Cons: bottleneck risk, single point of failure, latency through center. Best for small teams (3-7 agents) with human oversight.",
+      "source": "ChuScout research - MULTI-AGENT-PATTERNS.md",
+      "contributor": "ChuScout",
+      "timestamp": "2026-02-04T08:53:10.770Z"
+    },
+    {
+      "id": "ml7siex7",
+      "topic": "dragon-mind-advantages",
+      "content": "What makes Dragon Mind different: Clawdbot-native (built on existing infra), chat-first (uses real platforms not simulated), file-based simplicity (no complex frameworks), human-centric (CustomerChu stays in control).",
+      "source": "ChuScout research - COMPETITIVE-ANALYSIS.md",
+      "contributor": "ChuScout",
+      "timestamp": "2026-02-04T08:53:10.795Z"
+    },
+    {
+      "id": "ml7siexx",
+      "topic": "future-improvements",
+      "content": "Near-term improvements: CLI polish with proper flags, simple web UI for browsing. Medium-term: semantic search via embeddings, knowledge graph for relationships. Long-term: multi-tenant support, quality scoring, proactive knowledge filling.",
+      "source": "ChuScout research - TECH-RECOMMENDATIONS.md",
+      "contributor": "ChuScout",
+      "timestamp": "2026-02-04T08:53:10.821Z"
+    }
+  ],
+  "meta": {
+    "created": "2026-02-04T08:35:00.000Z",
+    "contributors": [
+      "ChuScout"
+    ]
+  }
+}
