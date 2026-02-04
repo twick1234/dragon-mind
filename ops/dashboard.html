@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="30">
+    <title>🐉 Dragon Mind - Ops Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #e4e4e4;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 2.5rem;
+            color: #ff6b35;
+            text-shadow: 0 0 20px rgba(255, 107, 53, 0.5);
+        }
+        .header .subtitle {
+            color: #888;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+        }
+        .card h2 {
+            color: #ff6b35;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .bot-list {
+            list-style: none;
+        }
+        .bot-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .bot-list li:last-child {
+            border-bottom: none;
+        }
+        .status {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        .status.online {
+            background: rgba(76, 175, 80, 0.2);
+            color: #4caf50;
+            border: 1px solid #4caf50;
+        }
+        .status.offline {
+            background: rgba(244, 67, 54, 0.2);
+            color: #f44336;
+            border: 1px solid #f44336;
+        }
+        .status.unknown {
+            background: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+            border: 1px solid #ffc107;
+        }
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .metric:last-child {
+            border-bottom: none;
+        }
+        .metric-value {
+            color: #4fc3f7;
+            font-weight: bold;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #666;
+            font-size: 0.8rem;
+        }
+        .refresh-indicator {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 107, 53, 0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #ff6b35;
+        }
+        .knowledge-stat {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+        }
+        .knowledge-stat .value {
+            color: #81c784;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="refresh-indicator">⟳ Auto-refresh: 30s</div>
+    
+    <div class="header">
+        <h1>🐉 Dragon Mind</h1>
+        <div class="subtitle">Chu Collective Operations Dashboard</div>
+    </div>
+    
+    <div class="dashboard">
+        <div class="card">
+            <h2>🤖 Bot Status</h2>
+            <ul class="bot-list" id="bot-list">
+                <li>
+                    <span>clawdbot</span>
+                    <span class="status online">online</span>
+                </li>
+                <li>
+                    <span>chu-coder</span>
+                    <span class="status unknown">checking...</span>
+                </li>
+                <li>
+                    <span>chu-scout</span>
+                    <span class="status unknown">checking...</span>
+                </li>
+                <li>
+                    <span>chu-ops</span>
+                    <span class="status online">online</span>
+                </li>
+                <li>
+                    <span>chu-memory</span>
+                    <span class="status unknown">checking...</span>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="card">
+            <h2>📚 Knowledge Base</h2>
+            <div class="knowledge-stat">
+                <span>Total Memories</span>
+                <span class="value" id="mem-count">--</span>
+            </div>
+            <div class="knowledge-stat">
+                <span>Active Sessions</span>
+                <span class="value" id="session-count">--</span>
+            </div>
+            <div class="knowledge-stat">
+                <span>Tasks Completed</span>
+                <span class="value" id="task-count">--</span>
+            </div>
+            <div class="knowledge-stat">
+                <span>Last Sync</span>
+                <span class="value" id="last-sync">--</span>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>💾 System Metrics</h2>
+            <div class="metric">
+                <span>Disk Usage</span>
+                <span class="metric-value" id="disk-usage">--</span>
+            </div>
+            <div class="metric">
+                <span>Memory Usage</span>
+                <span class="metric-value" id="mem-usage">--</span>
+            </div>
+            <div class="metric">
+                <span>Uptime</span>
+                <span class="metric-value" id="uptime">--</span>
+            </div>
+            <div class="metric">
+                <span>Load Average</span>
+                <span class="metric-value" id="load">--</span>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>📡 Quick Links</h2>
+            <div class="metric">
+                <span>Health Check</span>
+                <span class="metric-value"><a href="health-check.sh" style="color: #4fc3f7;">Run</a></span>
+            </div>
+            <div class="metric">
+                <span>Runbook</span>
+                <span class="metric-value"><a href="RUNBOOK.md" style="color: #4fc3f7;">View</a></span>
+            </div>
+            <div class="metric">
+                <span>Logs</span>
+                <span class="metric-value">~/.pm2/logs/</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>Dragon Mind v1.0 | Chu Collective | Last updated: <span id="timestamp"></span></p>
+    </div>
+    
+    <script>
+        document.getElementById('timestamp').textContent = new Date().toLocaleString();
+    </script>
+</body>
+</html>
