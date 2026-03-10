@@ -1,1 +1,9 @@
-.pycache
+__pycache__/
+*.pyc
+*.pyo
+venv_build/
+build/dist/
+build/build_tmp/
+*.dmg
+*.app
+assets/textures/
