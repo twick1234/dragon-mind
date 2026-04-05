@@ -7,11 +7,19 @@ function loadKnowledge() {
   if (!fs.existsSync(KNOWLEDGE_FILE)) {
     return { entries: [], meta: { created: new Date().toISOString(), contributors: [] } };
   }
-  return JSON.parse(fs.readFileSync(KNOWLEDGE_FILE, 'utf8'));
+  try {
+    return JSON.parse(fs.readFileSync(KNOWLEDGE_FILE, 'utf8'));
+  } catch (e) {
+    console.error('knowledge.json is corrupted, resetting:', e.message);
+    return { entries: [], meta: { created: new Date().toISOString(), contributors: [] } };
+  }
 }
 
 function saveKnowledge(data) {
-  fs.writeFileSync(KNOWLEDGE_FILE, JSON.stringify(data, null, 2));
+  // Atomic write: write to a temp file then rename to prevent corrupt state on crash
+  const tmp = KNOWLEDGE_FILE + '.tmp';
+  fs.writeFileSync(tmp, JSON.stringify(data, null, 2));
+  fs.renameSync(tmp, KNOWLEDGE_FILE);
 }
 
 function addKnowledge(topic, content, source, contributor) {

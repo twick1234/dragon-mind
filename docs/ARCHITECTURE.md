@@ -49,7 +49,7 @@ Dragon Mind uses a **file-based coordination architecture** where agents communi
 Each Chu agent has a dedicated workspace with standard files:
 
 ```
-/home/hacker8/chu-<name>/
+/home/<username>/chu-<name>/
 ├── SOUL.md          # Agent personality & role
 ├── AGENTS.md        # Team instructions
 ├── HEARTBEAT.md     # Polling behavior
@@ -64,7 +64,7 @@ Each Chu agent has a dedicated workspace with standard files:
 The `dragon-mind/` workspace is shared across all agents:
 
 ```
-/home/hacker8/dragon-mind/
+/home/<username>/dragon-mind/
 ├── STATUS.md        # Live progress board
 ├── docs/            # Documentation (ChuMemory)
 │   ├── PRD.md
@@ -204,10 +204,10 @@ Agents communicate through:
 │  │           FILE-BASED TASK DISPATCH                   │   │
 │  │                                                      │   │
 │  │  CustomerChu writes to:                              │   │
-│  │    /home/hacker8/chu-coder/INBOX.md                  │   │
-│  │    /home/hacker8/chu-scout/INBOX.md                  │   │
-│  │    /home/hacker8/chu-ops/INBOX.md                    │   │
-│  │    /home/hacker8/chu-memory/INBOX.md                 │   │
+│  │    /home/<username>/chu-coder/INBOX.md                  │   │
+│  │    /home/<username>/chu-scout/INBOX.md                  │   │
+│  │    /home/<username>/chu-ops/INBOX.md                    │   │
+│  │    /home/<username>/chu-memory/INBOX.md                 │   │
 │  │                                                      │   │
 │  │  Each agent checks INBOX.md on heartbeat (~30 min)   │   │
 │  │  and processes pending tasks                         │   │
@@ -256,8 +256,8 @@ Mark designed a robust monitoring system to keep all bots alive:
 ```
 
 **Key Files:**
-- `/home/hacker8/clawdbot-health-monitor.sh` - Health check script
-- `/home/hacker8/.config/systemd/user/clawdbot-health-monitor.service` - Systemd service
+- `/home/<username>/clawdbot-health-monitor.sh` - Health check script
+- `/home/<username>/.config/systemd/user/clawdbot-health-monitor.service` - Systemd service
 - PM2 ecosystem managed via `pm2 startup` and `pm2 save`
 
 ### 6.3 Multi-Bot Configuration
@@ -269,7 +269,7 @@ Each Chu bot runs as a separate Clawdbot instance with its own:
 | Config | `~/.clawdbot-<name>/clawdbot.json` |
 | Sessions | `~/.clawdbot-<name>/agents/` |
 | Auth | `~/.clawdbot-<name>/agents/main/agent/auth-profiles.json` |
-| Workspace | `/home/hacker8/chu-<name>/` |
+| Workspace | `/home/<username>/chu-<name>/` |
 
 **Critical Config Settings:**
 ```json
@@ -331,7 +331,7 @@ Each agent maintains a multi-layered memory system:
 │                                                              │
 │  ┌──────────────────────────────────────────────────────┐   │
 │  │              AGENT WORKSPACE MEMORY                  │   │
-│  │           /home/hacker8/chu-<name>/                  │   │
+│  │           /home/<username>/chu-<name>/                  │   │
 │  │                                                      │   │
 │  │  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  │   │
 │  │  │  SOUL.md    │  │  AGENTS.md  │  │   USER.md   │  │   │
@@ -367,7 +367,7 @@ Each agent maintains a multi-layered memory system:
 │                                                              │
 │  ┌──────────────────────────────────────────────────────┐   │
 │  │           SHARED PROJECT MEMORY                      │   │
-│  │          /home/hacker8/dragon-mind/                  │   │
+│  │          /home/<username>/dragon-mind/                  │   │
 │  │                                                      │   │
 │  │  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  │   │
 │  │  │ STATUS.md   │  │ KANBAN.md   │  │ README.md   │  │   │
@@ -487,8 +487,8 @@ All memory is backed up to GitHub for persistence:
 
 **Backup Command:**
 ```bash
-cd /home/hacker8/Claims-Phoenix && git add -A && git commit -m "Memory backup" && git push
-cd /home/hacker8/dragon-mind && git add -A && git commit -m "Project backup" && git push
+cd /home/<username>/Claims-Phoenix && git add -A && git commit -m "Memory backup" && git push
+cd /home/<username>/dragon-mind && git add -A && git commit -m "Project backup" && git push
 ```
 
 ### 7.6 Memory Search (Semantic Recall)
@@ -553,7 +553,7 @@ Agent retrieves specific context
 **When building the core engine:**
 
 1. Read STATUS.md first to avoid conflicts
-2. Code goes in `/home/hacker8/dragon-mind/src/`
+2. Code goes in `/home/<username>/dragon-mind/src/`
 3. Consider heartbeat coordination in design
 4. File-based state is the current pattern
 5. Keep it simple—we're proving the concept
