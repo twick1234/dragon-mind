@@ -3,20 +3,41 @@ node_modules/
 # Environment and secrets — never commit these
 .env
 .env.*
+.env.local
 *.key
 *.pem
+*.p8
 *.p12
 *.pfx
 id_rsa
 id_rsa.pub
 auth-profiles.json
+**/auth-profiles.json
 clawdbot.json
-ecosystem.config.js
+config/secrets*
+secrets/
+credentials/
+
+# Build artifacts
+dist/
+build/
+.npm
+.eslintcache
 
 # Logs and databases
 *.log
+npm-debug.log*
 *.sqlite
 *.db
 
-# OS files
+# PM2 / process state
+.pm2/
+ecosystem.config.js
+
+# OS / editor
 .DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
