@@ -5,6 +5,8 @@ echo "  \"bots\": {"
 
 for bot in clawdbot chu-coder chu-scout chu-ops chu-memory; do
   status=$(pm2 jlist | jq -r ".[] | select(.name==\"$bot\") | .pm2_env.status" 2>/dev/null || echo "unknown")
+  # Sanitize: allow only alphanumeric, hyphen, and underscore to prevent JSON injection
+  status=$(printf '%s' "$status" | tr -cd '[:alnum:]_-')
   echo "    \"$bot\": \"$status\","
 done
 

@@ -1,43 +1,60 @@
 const fs = require('fs');
 const path = require('path');
+const os = require('os');
 
 const KNOWLEDGE_FILE = path.join(__dirname, '..', 'knowledge.json');
+const MAX_TOPIC_LEN = 200;
+const MAX_CONTENT_LEN = 10000;
 
 function loadKnowledge() {
   if (!fs.existsSync(KNOWLEDGE_FILE)) {
     return { entries: [], meta: { created: new Date().toISOString(), contributors: [] } };
   }
-  return JSON.parse(fs.readFileSync(KNOWLEDGE_FILE, 'utf8'));
+  try {
+    return JSON.parse(fs.readFileSync(KNOWLEDGE_FILE, 'utf8'));
+  } catch (e) {
+    console.error('Warning: knowledge.json is corrupt, starting fresh:', e.message);
+    return { entries: [], meta: { created: new Date().toISOString(), contributors: [] } };
+  }
 }
 
 function saveKnowledge(data) {
-  fs.writeFileSync(KNOWLEDGE_FILE, JSON.stringify(data, null, 2));
+  const tmp = path.join(os.tmpdir(), `knowledge-${Date.now()}.json.tmp`);
+  fs.writeFileSync(tmp, JSON.stringify(data, null, 2));
+  fs.renameSync(tmp, KNOWLEDGE_FILE);
 }
 
 function addKnowledge(topic, content, source, contributor) {
+  if (typeof topic !== 'string' || typeof content !== 'string') {
+    throw new Error('topic and content must be strings');
+  }
+  if (topic.length > MAX_TOPIC_LEN || content.length > MAX_CONTENT_LEN) {
+    throw new Error(`Input exceeds size limit (topic: ${MAX_TOPIC_LEN}, content: ${MAX_CONTENT_LEN})`);
+  }
   const data = loadKnowledge();
   const entry = {
     id: Date.now().toString(36),
     topic,
     content,
-    source,
-    contributor,
+    source: typeof source === 'string' ? source : 'cli',
+    contributor: typeof contributor === 'string' ? contributor : 'unknown',
     timestamp: new Date().toISOString()
   };
   data.entries.push(entry);
-  if (!data.meta.contributors.includes(contributor)) {
-    data.meta.contributors.push(contributor);
+  if (!data.meta.contributors.includes(entry.contributor)) {
+    data.meta.contributors.push(entry.contributor);
   }
   saveKnowledge(data);
   return entry;
 }
 
 function query(searchTerm) {
+  if (!searchTerm) return [];
   const data = loadKnowledge();
-  const term = searchTerm.toLowerCase();
-  return data.entries.filter(e => 
-    e.topic.toLowerCase().includes(term) || 
-    e.content.toLowerCase().includes(term)
+  const term = String(searchTerm).toLowerCase();
+  return data.entries.filter(e =>
+    (typeof e.topic === 'string' && e.topic.toLowerCase().includes(term)) ||
+    (typeof e.content === 'string' && e.content.toLowerCase().includes(term))
   );
 }
 
