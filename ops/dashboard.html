@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="refresh" content="30">
-    <title>🐉 Dragon Mind - Ops Dashboard</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self';">
+    <title>Dragon Mind - Ops Dashboard</title>
     <style>
         * {
             margin: 0;
@@ -207,15 +208,15 @@
             <h2>📡 Quick Links</h2>
             <div class="metric">
                 <span>Health Check</span>
-                <span class="metric-value"><a href="health-check.sh" style="color: #4fc3f7;">Run</a></span>
+                <span class="metric-value">Run via ops/health-check.sh</span>
             </div>
             <div class="metric">
                 <span>Runbook</span>
-                <span class="metric-value"><a href="RUNBOOK.md" style="color: #4fc3f7;">View</a></span>
+                <span class="metric-value">See ops/RUNBOOK.md</span>
             </div>
             <div class="metric">
                 <span>Logs</span>
-                <span class="metric-value">~/.pm2/logs/</span>
+                <span class="metric-value">See process manager logs</span>
             </div>
         </div>
     </div>
