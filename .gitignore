@@ -1,1 +1,40 @@
 node_modules/
+
+# Environment / secrets — NEVER commit these
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+*.p12
+*.pfx
+secrets/
+private/
+
+# Credentials and tokens
+auth-profiles.json
+sessions.json
+*.token
+
+# Build output
+dist/
+build/
+out/
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Test coverage
+coverage/
+.nyc_output/
