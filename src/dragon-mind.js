@@ -14,7 +14,19 @@ function saveKnowledge(data) {
   fs.writeFileSync(KNOWLEDGE_FILE, JSON.stringify(data, null, 2));
 }
 
+function validateField(name, value, maxLen) {
+  if (typeof value !== 'string') throw new Error(`${name} must be a string`);
+  if (value.trim().length === 0) throw new Error(`${name} must not be empty`);
+  if (value.length > maxLen) throw new Error(`${name} exceeds max length of ${maxLen}`);
+  return value.trim();
+}
+
 function addKnowledge(topic, content, source, contributor) {
+  topic       = validateField('topic',       topic,       200);
+  content     = validateField('content',     content,     10000);
+  source      = validateField('source',      source,      500);
+  contributor = validateField('contributor', contributor, 100);
+
   const data = loadKnowledge();
   const entry = {
     id: Date.now().toString(36),
