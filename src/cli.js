@@ -13,7 +13,7 @@ switch(cmd) {
     console.log(query(args[0]));
     break;
   case 'recent':
-    console.log(getRecent(parseInt(args[0]) || 10));
+    console.log(getRecent(Math.min(parseInt(args[0]) || 10, 100)));
     break;
   case 'topics':
     console.log(listTopics());
