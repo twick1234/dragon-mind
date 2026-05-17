@@ -1,23 +1,46 @@
 const fs = require('fs');
 const path = require('path');
+const os = require('os');
+const crypto = require('crypto');
 
 const KNOWLEDGE_FILE = path.join(__dirname, '..', 'knowledge.json');
 
+function emptyStore() {
+  return { entries: [], meta: { created: new Date().toISOString(), contributors: [] } };
+}
+
 function loadKnowledge() {
   if (!fs.existsSync(KNOWLEDGE_FILE)) {
-    return { entries: [], meta: { created: new Date().toISOString(), contributors: [] } };
+    return emptyStore();
   }
-  return JSON.parse(fs.readFileSync(KNOWLEDGE_FILE, 'utf8'));
+  try {
+    return JSON.parse(fs.readFileSync(KNOWLEDGE_FILE, 'utf8'));
+  } catch (err) {
+    console.error('[dragon-mind] knowledge.json parse failed, returning empty store:', err.message);
+    return emptyStore();
+  }
 }
 
 function saveKnowledge(data) {
-  fs.writeFileSync(KNOWLEDGE_FILE, JSON.stringify(data, null, 2));
+  // Atomic write: write to a temp file beside the target, then rename.
+  // rename(2) is atomic on POSIX — concurrent readers never see a partial file.
+  const tmp = path.join(
+    path.dirname(KNOWLEDGE_FILE),
+    `.knowledge-${crypto.randomBytes(6).toString('hex')}.tmp`
+  );
+  try {
+    fs.writeFileSync(tmp, JSON.stringify(data, null, 2));
+    fs.renameSync(tmp, KNOWLEDGE_FILE);
+  } catch (err) {
+    try { fs.unlinkSync(tmp); } catch (_) {}
+    throw err;
+  }
 }
 
 function addKnowledge(topic, content, source, contributor) {
   const data = loadKnowledge();
   const entry = {
-    id: Date.now().toString(36),
+    id: crypto.randomUUID(),
     topic,
     content,
     source,

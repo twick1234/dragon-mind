@@ -1,1 +1,14 @@
 node_modules/
+
+# Secrets and credentials — never commit these
+.env
+.env.*
+*.env
+*.pem
+*.key
+*.p12
+*.pfx
+auth-profiles.json
+*secret*
+*credential*
+*.token
