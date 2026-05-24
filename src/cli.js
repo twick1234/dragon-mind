@@ -12,9 +12,12 @@ switch(cmd) {
   case 'query':
     console.log(query(args[0]));
     break;
-  case 'recent':
-    console.log(getRecent(parseInt(args[0]) || 10));
+  case 'recent': {
+    const rawLimit = parseInt(args[0], 10);
+    const limit = (Number.isFinite(rawLimit) && rawLimit > 0 && rawLimit <= 1000) ? rawLimit : 10;
+    console.log(getRecent(limit));
     break;
+  }
   case 'topics':
     console.log(listTopics());
     break;

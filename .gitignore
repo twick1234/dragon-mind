@@ -1,1 +1,25 @@
 node_modules/
+
+# Environment / secrets — never commit these
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+*.pfx
+*.cert
+*.crt
+auth-profiles.json
+clawdbot.json
+
+# Runtime / build artifacts
+*.log
+dist/
+build/
+.DS_Store
+
+# SQLite databases (may contain agent memory)
+*.db
+*.sqlite
+*.sqlite3
